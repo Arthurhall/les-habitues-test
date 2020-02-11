@@ -23,5 +23,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Client\LesHabituesClient:
+        arguments:
+            - { base_uri: https://www.leshabitues.fr/testapi/, timeout: 5.0, headers: {content-type: application/json}}
+        tags: ['csa_guzzle.client']
