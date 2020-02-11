@@ -23,6 +23,10 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Command\:
+        resource: '../src/Command/'
+        tags: ['console.command']
+
     App\Client\LesHabituesClient:
         arguments:
             - { base_uri: https://www.leshabitues.fr/testapi/, timeout: 5.0, headers: {content-type: application/json}}
