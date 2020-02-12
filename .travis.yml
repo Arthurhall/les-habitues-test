@@ -1,0 +1,25 @@
+language: php
+php:
+    - 7.3
+services:
+    - mysql
+branches:
+    only:
+        - master
+before_script:
+    - phpenv config-add travis.php.ini
+    - php -i | grep memory_limit
+    - composer install --prefer-source --no-interaction
+script:
+    - make requirements-checker
+    - make lint-yaml
+    - make lint-twig
+    - make db-force
+    - make phpunit
+notifications:
+    on_success: never
+    on_failure: always
+    email:
+        - test@test.fr
+after_success:
+    - if [ ${TRAVIS_BRANCH} == master ] && [ ${TRAVIS_PHP_VERSION} == 7.3 ] && [ ${TRAVIS_PULL_REQUEST} == false ]; then ssh -A -p 22 user@deployserver -o stricthostkeychecking=no "bash -l -c 'cd /home/user/capistrano-deploy && cap recette deploy --trace'"; fi;
