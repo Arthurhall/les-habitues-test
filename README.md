@@ -19,3 +19,4 @@ composer install
 
 * Map data API with ojects (List, Chain, ...)
 * Make dynamic pagination with API properties `total` and `has_more`
+* Add functional and unit testing
