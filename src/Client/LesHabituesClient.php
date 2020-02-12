@@ -18,8 +18,8 @@ class LesHabituesClient extends Client
      *
      * @return ResponseInterface
      */
-    public function getShops(int $page = 1) : ResponseInterface
+    public function getShops(int $page = 1): ResponseInterface
     {
-        return $this->get(sprintf('shops/?page=%d', $page));
+        return $this->get(sprintf('shops?page=%d', $page));
     }
 }

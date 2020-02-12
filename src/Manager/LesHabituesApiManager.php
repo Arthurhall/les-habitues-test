@@ -34,8 +34,18 @@ class LesHabituesApiManager
         $this->serializer = $serializer;
     }
 
-    public function getShops()
+    public function getLocalisations(int $page = 1): array
     {
-        $response = $this->client->getShops();
+        $response = $this->client->getShops($page);
+        $content = $this->serializer->decode($response->getBody()->getContents(), 'json');
+
+        $shops = [];
+        foreach ($content['data'] as $chain) {
+            foreach ($chain['localisations'] as $localisation) {
+                $shops[] = $localisation;
+            }
+        }
+
+        return $shops;
     }
 }
