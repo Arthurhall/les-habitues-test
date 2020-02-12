@@ -3,6 +3,6 @@
 ## Install
 
 ```shell
-git clone https://github.com/Arthurhall/les-habitues-test
+git clone https://github.com/Arthurhall/les-habitues-test.git
 composer install
 ```
